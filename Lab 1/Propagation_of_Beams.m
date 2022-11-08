@@ -16,9 +16,9 @@ Nx = 2048; %size of matrix
 Ny = 2048; 
 dx = lambda2/2; %
 dy = lambda2/2; %
-d = 300; %size of aperture (side or 2*radius)
+d = 40; %size of aperture (side or 2*radius)
 z0=d/2; % Rayleigh range
-prop_dist = 5000;
+prop_dist = 50;
 n0 = 1;
 
 
@@ -89,12 +89,10 @@ subplot(1,2,1); plot(x,abs(gauss(:,Nx/2+1)).^2);title("Gaussian beam before prop
 subplot(1,2,2); plot(x,abs(uout_theory(:,Nx/2+1)).^2);title("Gaussian beam after propagation");xlabel('x [um]');ylabel('Intensity[a.u]');
 
 figure('Color','w', 'Name', 'Comparision of intensity distribution and error bars');
-subplot(2,3,1), plot(x,abs(uout_theory(:,Nx/2+1)).^2);title("Gaussian beam theory");xlabel('x [um]');ylabel('Intensity[a.u]');
-subplot(2,3,2), plot(x,abs(uout1(:,Nx/2+1)).^2);title("Intesnity after diffraction and propagation");xlabel('x [um]');ylabel('Intensity[a.u]');
-subplot(2,3,3), plot(x,abs(diff(:,Nx/2+1)).^2);title("Error difference");xlabel('x [um]');ylabel('Error[a.u.]');
-subplot(2,3,4), imagesc(x,y,abs(uout_theory)); title("Amp out theory");xlabel('x [um]');ylabel('y [um]');colorbar;
-subplot(2,3,5), imagesc(x,y,abs(uout1)); title("Amp out diffraction");xlabel('x [um]');ylabel('y [um]');colorbar;
-subplot(2,3,6), imagesc(x,y,abs(uout_theory-uout1)); title("Amp diff");xlabel('x [um]');ylabel('y [um]');colorbar;
+subplot(2,2,1), plot(x,abs(uout_theory(:,Nx/2+1)).^2);title("Gaussian beam numerical");xlabel('x [um]');ylabel('Intensity[a.u]');
+subplot(2,2,2), plot(x,abs(uout1(:,Nx/2+1)).^2);title("Intensity after diffraction and propagation");xlabel('x [um]');ylabel('Intensity[a.u]');
+subplot(2,2,3), imagesc(x,y,abs(uout_theory)); title("Amp out numerical Gauss");xlabel('x [um]');ylabel('y [um]');colorbar;
+subplot(2,2,4), imagesc(x,y,abs(uout1)); title("Amp out diffraction");xlabel('x [um]');ylabel('y [um]');colorbar;
 
 newin1 = zeros(size(uin1)+2);
 newin1(2:end-1,2:end-1)=uin1;
@@ -110,9 +108,9 @@ newy = [0 y 0];
 
 
  figure('Color','w', 'Name', 'Comparision of intensity distribution with and without zero padding');
- subplot(2,2,1); imagesc(x,y,abs(uout1_zero)); title("ZeroPadding");xlabel('x [um]');ylabel('Intensity[a.u]');
+ subplot(2,2,1); imagesc(x,y,abs(uout1_zero)); title("Zero Padding");xlabel('x [um]');ylabel('Intensity[a.u]');
  subplot(2,2,2); imagesc(x,y,abs(uout1)); title("Without 0 padding");xlabel('x [um]');ylabel('Intensity[a.u]');
- subplot(2,2,3); imagesc(x,y,abs(uout2_zero)); title("ZeroPadding");xlabel('x [um]');ylabel('Intensity[a.u]');
+ subplot(2,2,3); imagesc(x,y,abs(uout2_zero)); title("Zero Padding");xlabel('x [um]');ylabel('Intensity[a.u]');
  subplot(2,2,4); imagesc(x,y,abs(uout2)); title("Without 0 padding");xlabel('x [um]');ylabel('Intensity[a.u]');
 % subplot(2,3,1), plot(x,abs(new_theory(:,Nx/2+1)).^2);title("Gaussian beam theory");xlabel('x [um]');ylabel('Intensity[a.u]');
 % subplot(2,3,2), plot(x,abs(newout1(:,Nx/2+1)).^2);title("Gaussian beam for numerical propagation");xlabel('x [um]');ylabel('Intensity[a.u]');
@@ -121,6 +119,9 @@ newy = [0 y 0];
 % subplot(2,3,5), imagesc(x,y,abs(uout1)); title("Amp out intensity");xlabel('x [um]');ylabel('y [um]');colorbar;
 % subplot(2,3,6), imagesc(newx,newy,abs(new_theory-newout1)); title("Amp diff");xlabel('x [um]');ylabel('y [um]');colorbar;
 % 
+
+
+
 
 
 
